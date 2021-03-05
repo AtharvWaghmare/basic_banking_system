@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+        crossorigin="anonymous" />
+        <title>Transfer Page</title>
+        <style>
+        body{
+                background-color: hsla(89, 43%, 51%, 0.3);
+        }
+        h1{
+            margin-left: 40%;
+              color: white;
+  text-shadow: 2px 2px 4px #000000;
+        }
+        .design{
+            margin: 10px 10px 10px 10px;
+            padding: 20px 20px 20px 20px;
+            border: 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Transfer Details</h1>
+    <form action="/api/users" method="POST" class="design" id="transaction">
+        <div class="form-group">
+            <label for="name">Name of Beneficiary</label>
+            <input type="text" class="form-control" id="name" value="" placeholder="Enter Your Name">
+        </div>
+        <div class="form-group">
+            <label for="email">Beneficiary Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+            value="" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="balance">Amount(Rs.)</label>
+            <input type="text" class="form-control" id="balance" value="" placeholder="Amount">
+        </div>
+
+        <button type="submit" class="btn text-dark update">Send</button>
+    </form>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+        <script>
+            $("#transaction").submit(function (event) {
+                event.preventDefault();
+                const sendid  =  "<%= user._id %>"
+                const sendName = "<%= user.name %>";
+                const sendEmail = "<%= user.email %>";
+                const sendBalance = "<%= user.balance %>";
+
+                const Name = document.querySelector("#name").value;
+                const Email = document.querySelector("#email").value;
+                const Amount = document.querySelector("#balance").value;
+                
+                const UpdatedbalanceSender = sendBalance - Amount;
+                console.log(UpdatedbalanceSender);
+                        
+                        var data = {
+                            id: sendid,
+                            name: sendName,
+                            email: sendEmail,
+                            balance: UpdatedbalanceSender
+                        }
+                        
+                        var request = {
+                            "url": `http://localhost:8080/api/users/${data.id}`,
+                            "method": "PUT",
+                            "data": data
+                        }
+
+                $.ajax(request).done(function (response) {
+                    alert("Transaction successful!!!");
+                })
+                        if(Email === "rohan12@gmail.com"){
+                            var data1 = {
+                                id: "60408f4dc696981714d8fde6",
+                                name: "Rohan das",
+                                email: "rohan12@gmail.com",
+                                balance: 1000+Number(Amount)
+                            }
+
+                            var request = {
+                                "url": `http://localhost:8080/api/users/${data1.id}`,
+                                "method": "PUT",
+                                "data": data1
+                            }
+
+                            $.ajax(request).done(function (response) {
+                                console.log("data updated successfully");
+                            })
+                            
+                        }else if(Email === "kiran21@gmail.com"){
+                        var data2 = {
+                                id: "604095be72ad212a2caa03ec",
+                                name: "kiran shinde",
+                                email: "kiran21@gmail.com",
+                                balance: 1000+Number(Amount)
+                            }
+
+                            var request = {
+                                "url": `http://localhost:8080/api/users/${data2.id}`,
+                                "method": "PUT",
+                                "data": data2
+                            }
+
+                            $.ajax(request).done(function (response) {
+                                console.log("data updated successfully");
+                            })
+                        }else if(Email === "joshi111@gmail.com"){
+                            //user3
+                            var data3 = {
+                                id: "60409679d33b262bc02c8c24",
+                                name: "kumar joshi",
+                                email: "joshi111@gmail.com",
+                                balance: 1000+Number(Amount)
+                            }
+
+                            var request = {
+                                "url": `http://localhost:8080/api/users/${data3.id}`,
+                                "method": "PUT",
+                                "data": data3
+                            }
+
+                            $.ajax(request).done(function (response) {
+                                console.log("data updated successfully");
+                            })
+                           
+                        }else if(Email === "akshay33@gmail.com"){
+                            //user4
+                        var data4 = {
+                                id: "60409996d4f1f224b4e6b8ed",
+                                name: "akshay shende",
+                                email: "akshay33@gmail.com",
+                                balance: 1000+Number(Amount)
+                            }
+
+                            var request = {
+                                "url": `http://localhost:8080/api/users/${data4.id}`,
+                                "method": "PUT",
+                                "data": data4
+                            }
+
+                            $.ajax(request).done(function (response) {
+                                console.log("data updated successfully");
+                            })
+
+                        }else if(Email === "vinod44@gmail.com"){
+                            //user5
+                            var data5 = {
+                                id: "60409a16c7d8142c18755311",
+                                name: "vinod bopale",
+                                email: "vinod44@gmail.com",
+                                balance: 1000+Number(Amount)
+                            }
+
+                            var request = {
+                                "url": `http://localhost:8080/api/users/${data5.id}`,
+                                "method": "PUT",
+                                "data": data5
+                            }
+
+                            $.ajax(request).done(function (response) {
+                                console.log("data updated successfully");
+                            })
+
+                        }else if(Email === "sameer66@gmail.com"){
+                            //user6
+                            var data6 = {
+                                id: "60409ac9f48f2b1370c59f98",
+                                name: "sammer ansari",
+                                email: "sameer66@gmail.com",
+                                balance: 1000+Number(Amount)
+                            }
+
+                            var request = {
+                                "url": `http://localhost:8080/api/users/${data6.id}`,
+                                "method": "PUT",
+                                "data": data6
+                            }
+
+                            $.ajax(request).done(function (response) {
+                                console.log("data updated successfully");
+                            })
+                    
+                        }else if(Email === "mehta45@gmail.com"){
+                            //user7
+                            var data7 = {
+                                id: "60409b51390b1214b8ff679c",
+                                name: "abhijeet mehta",
+                                email: "mehta45@gmail.com",
+                                balance: 1000+Number(Amount)
+                            }
+
+                            var request = {
+                                "url": `http://localhost:8080/api/users/${data7.id}`,
+                                "method": "PUT",
+                                "data": data7
+                            }
+
+                            $.ajax(request).done(function (response) {
+                                alert("Transaction successful!!!");
+                            })
+                            
+                        }else if(Email === "patil99@gmail.com"){
+                            //user8
+                            var data8 = {
+                                id: "60409bf123cbaf12907ba3ea",
+                                name: "vishwajeet patil",
+                                email: "patil99@gmail.com",
+                                balance: 1000+Number(Amount)
+                            }
+
+                            var request = {
+                                "url": `http://localhost:8080/api/users/${data8.id}`,
+                                "method": "PUT",
+                                "data": data8
+                            }
+
+                            $.ajax(request).done(function (response) {
+                                console.log("data updated successfully");
+                            })
+                               
+                        }else if(Email === "pratik76@gmail.com"){
+                            //user9
+                            var data9 = {
+                                id: "60409ca671086b2124f5986e",
+                                name: "pratik jaiswal",
+                                email: "pratik76@gmail.com",
+                                balance: 1000+Number(Amount)
+                            }
+
+                            var request = {
+                                "url": `http://localhost:8080/api/users/${data9.id}`,
+                                "method": "PUT",
+                                "data": data9
+                            }
+
+                            $.ajax(request).done(function (response) {
+                                console.log("data updated successfully");
+                            })
+
+                        }else if(Email === "jayesh87@gmail.com"){
+                            //user10
+                            var data10 = {
+                                id: "60409d34e1cf610fb4892a71",
+                                name: "jayesh chemate",
+                                email: "jayesh87@gmail.com",
+                                balance: 1000+Number(Amount)
+                            }
+
+                            var request = {
+                                "url": `http://localhost:8080/api/users/${data10.id}`,
+                                "method": "PUT",
+                                "data": data10
+                            }
+
+                            $.ajax(request).done(function (response) {
+                                console.log("data updated successfully");
+                            })
+                             
+                        }else if(Email === "manoj89@gmail.com"){
+                            //user11
+                            var data11 = {
+                                id: "60409db2f94e8f2f98a7d74f",
+                                name: "Manoj darade",
+                                email: "manoj89@gmail.com",
+                                balance: 1000+Number(Amount)
+                            }
+
+                            var request = {
+                                "url": `http://localhost:8080/api/users/${data11.id}`,
+                                "method": "PUT",
+                                "data": data11
+                            }
+
+                            $.ajax(request).done(function (response) {
+                                console.log("data updated successfully");
+                            })
+                            
+                        }else if(Email === "veer345@gmail.com"){
+                            //user12
+                            var data12 = {
+                                id: "60409e3fd580b000f0d19ad1",
+                                name: "veer salunke",
+                                email: "veer345@gmail.com",
+                                balance: 1000+Number(Amount)
+                            }
+
+                            var request = {
+                                "url": `http://localhost:8080/api/users/${data12.id}`,
+                                "method": "PUT",
+                                "data": data12
+                            }
+
+                            $.ajax(request).done(function (response) {
+                                console.log("data updated successfully");
+                            })
+                              
+                        }
+                        
+            })
+        </script>
+</body>
+</html>
